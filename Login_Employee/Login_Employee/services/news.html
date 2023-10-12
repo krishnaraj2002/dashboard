@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Flex Hover Slider | HTML + CSS + jQuery</title>
+  <link rel="stylesheet" href="./style.css">
+<style>
+    .back-button:hover {
+    background-color: #0056b3; /* Change to your desired hover color */
+}
+</style>
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div class="flex-container">
+    <div class="spinner">
+        <p>
+            <div class="cube1"></div>
+            <div class="cube2"></div>
+            Loading...
+        </p>
+    </div>
+    <div class="flex-slide home" data-title="Transaction">
+        <div class="flex-title flex-title-home"></div>
+        <div class="flex-about flex-about-home">
+            <p>Immersive experiences in customer transactions integrate technology, personalization, and sensory elements to cultivate lasting brand loyalty beyond transactions.</p>
+        </div>
+    </div>
+    <div class="flex-slide about" data-title="Interaction">
+        <div class="flex-title"></div>
+        <div class="flex-about">
+            <p>Customer service interactions encompass all the touchpoints and exchanges between a company and its customers, encompassing inquiries, support, and problem resolution.</p>
+        </div>
+    </div>
+    <div class="flex-slide work" data-title="Loan Program">
+        <div class="flex-title"></div>
+        <div class="flex-about">
+            <p>Exploring various loan options and consulting with a financial advisor ensures well-informed borrowing decisions, aligning your financial goals with the most suitable loan products.</p>
+        </div>
+    </div>
+    <div class="flex-slide contact" data-title="Security">
+        <div class="flex-title"></div>
+        <div class="flex-about">
+            <p>Implementing secure authentication methods and transparent transaction processes not only bolster customer trust but also safeguard sensitive data in today's digital economy.</p>
+        </div>
+    </div>
+</div>
+
+
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/769286/jquery.waitforimages.min.js'></script><script  src="./script.js"></script>
+<a href="file:///C:/Users/91733/Downloads/Login_Employee/Login_Employee/dashboard.html"  class="back-button">
+    <i class="fas fa-arrow-left"></i> Back to Dashboard
+</a>
+
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        body {
+            background-image: url('back.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        
+.back-button:hover {
+    background-color: #0056b3; /* Change to your desired hover color */
+}
+    </style>
+    <title>Team Animated</title>
+</head>
+<body>
+    <div class="container">
+        <div class="container">
+            <div class="icon">
+                <div class="imgBx active" style="--i:1;" data-id="content1">
+                    <img src="musrath.jpeg" alt="">
+                </div>
+                <div class="imgBx" style="--i:2;" data-id="content2">
+                    <img src="krishna.jpeg" alt="">
+                </div>
+                <div class="imgBx" style="--i:3;" data-id="content3">
+                    <img src="suman.jpeg" alt="">
+                </div>
+                <div class="imgBx" style="--i:4;" data-id="content4">
+                    <img src="Haritha.jpeg" alt="">
+                </div>
+            </div>
+        <div class="content">
+            <div class="contentBx active" id="content1">
+                <div class="card">
+                    <div class="imgBx">
+                        <img src="musrath.jpeg" alt="">
+                    </div>
+                    <div class="textBx">
+                        <h2>Mohamed Musrath<br><span>Unity Components</span></h2>
+                        <ul class="sci">
+                           
+                            <li><a href=" https://www.linkedin.com/in/musrath-mohamed-089951210"><i class="fa-brands fa-linkedin"></i></a></li>
+                            <li><a href="https://github.com/Mohamedmusrath"><i class="fa-brands fa-github"></i></a></li>
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contentBx" id="content2">
+                <div class="card">
+                    <div class="imgBx">
+                        <img src="krishna.jpeg" alt="">
+                    </div>
+                    <div class="textBx">
+                        <h2>Krishnaraj<br><span>UI Developer</span></h2>
+                        <ul class="sci">
+                           
+                            <li><a href=" https://www.linkedin.com/in/krishna-raj2002"><i class="fa-brands fa-linkedin"></i></a></li>
+                            <li><a href="https://github.com/krishnaraj2002"><i class="fa-brands fa-github"></i></a></li>
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contentBx" id="content3">
+                <div class="card">
+                    <div class="imgBx">
+                        <img src="suman.jpeg" alt="">
+                    </div>
+                    <div class="textBx">
+                        <h2>Suman<br><span>Blockchain Technology</span></h2>
+                        <ul class="sci">
+                            
+                            <li><a href="https://www.linkedin.com/in/suman-k-007705247"><i class="fa-brands fa-linkedin"></i></a></li>
+                            <li><a href="https://github.com/SUMAN834"><i class="fa-brands fa-github"></i></a></li>
+                            
+                    </div>
+                </div>
+            </div>
+
+            <div class="contentBx" id="content4">
+                <div class="card">
+                    <div class="imgBx">
+                        <img src="Haritha.jpeg" alt="">
+                    </div>
+                    <div class="textBx">
+                        <h2>Haritha<br><span>Backend Developer</span></h2>
+                        <ul class="sci">
+                           
+                            <li><a href="https://www.linkedin.com/in/haritha-karthikeyan-23bb44258"><i class="fa-brands fa-linkedin"></i></a></li>
+                            <li><a href="https://github.com/har-bit/har-bit"><i class="fa-brands fa-github"></i></a></li>
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <a href="file:///C:/Users/91733/Desktop/Completed/Login_Employee/dashboard.html" class="back-button">
+                <i class="fas fa-arrow-left"></i> Back to Dashboard
+            </a>
+            
+        </div>
+    </div>
+
+    <script>
+        let imgBx = document.querySelectorAll('.imgBx')
+        let contentBx = document.querySelectorAll('.contentBx')
+
+        for(let i=0; i < imgBx.length; i++){
+            imgBx[i].addEventListener('mouseover', function(){
+                for(let i=0; i<contentBx.length; i++){
+                    contentBx[i].className = 'contentBx';
+                }
+                document.getElementById(this.dataset.id).className = 'contentBx active';
+
+                for(let i=0; i<imgBx.length; i++){
+                    imgBx[i].className = 'imgBx';
+                }
+                this.className = 'imgBx active';
+            })
+        }
+    </script>
+    <a href="file:///C:/Users/91733/Downloads/Login_Employee/Login_Employee/dashboard.html"  class="back-button">
+        <i class="fas fa-arrow-left"></i> Back to Dashboard
+    </a>
+</body>
+</html>

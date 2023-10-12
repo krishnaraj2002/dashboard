@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <center><title>User Profile</title></center>
+  <style>
+    body {
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start; /* Align the container to the left */
+      min-height: 100vh;
+      position: relative;
+    }
+
+    header {
+      
+      color: white;
+      padding: 10px 0;
+      text-align: center;
+      font-family: 'Press Start 2P', cursive;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 32px;
+      text-align:end; /* Center-align the h1 text */
+    }
+
+    #userData {
+      text-align: center;
+      max-width: 900px;
+      margin-left: 120px;
+      background-color: rgba(0, 0, 0, 0.8);
+      border: 4px solid hsl(177, 95%, 48%);
+      border-radius: 18px;
+      padding: 20px;
+      font-family: sans-serif;
+      font-size: 18px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .container h2 {
+      font-weight: bold;
+      color: #fff;
+      font-family: 'Press Start 2P', cursive;
+    }
+
+    .container p {
+      color: #fff;
+      margin-top: 20px;
+    }
+
+    #background-video {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -1;
+    }
+
+    .user-image {
+      max-width: 180px;
+      margin-top: 20px;
+      align-self: flex-end;
+    }
+
+    .additional-image {
+      max-width: 70%; /* Adjust this value to control the width of the image */
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      height: 100%;
+    }
+    .back-button:hover {
+    background-color: #0056b3; /* Change to your desired hover color */
+}
+  </style>
+</head>
+<body>
+  <video autoplay loop muted id="background-video">
+    <source src="https://cdn.pixabay.com/vimeo/365890983/circuit-27725.mp4?width=1280&hash=add45b508072175ba4147adf4a28e89e99177381" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <header>
+    <h1>User Profile</h1>
+  </header>
+  <br>
+
+  <div class="container" id="userData" style="align-content: start;">
+    <!-- User data will be dynamically inserted here -->
+    <h2>Name:</h2>
+    <h2>DOB:</h2>
+    <h2>Email:</h2>
+    <h2>Address:</h2>
+    <h2>Gender:</h2>
+    <h2>Father's Name:</h2>
+    <h2>Mother's Name:</h2>
+    <h2>Phone Number:</h2>
+    <h2>Education:</h2>
+    <h2>Current Status:</h2>
+    <h2>Job Title:</h2>
+    <h2>Company Name:</h2>
+    <p>No user data found.</p>
+    <img class="user-image" src="your-image.jpg" alt="User Profile Image">
+  </div>
+
+  <img class="additional-image" src="https://img.freepik.com/free-vector/two-factor-authentication-concept-illustration_114360-5598.jpg?w=826&t=st=1695194060~exp=1695194660~hmac=9ceee12a9acbdae822e49463a6ad2328f4fc561522f0a9ed1e9dfafc09dde154" alt="Additional Image"> 
+
+  <script type="module">
+    // ... (Your Firebase script remains unchanged)
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js';
+    import { getDatabase, ref, get } from 'https://www.gstatic.com/firebasejs/9.0.2/firebase-database.js';
+    import { getStorage, ref as storageRef, getDownloadURL } from 'https://www.gstatic.com/firebasejs/9.0.2/firebase-storage.js';
+
+    // Your Firebase project configuration
+    const firebaseConfig = {
+        authDomain: "verification-e0057.firebaseapp.com",
+        databaseURL: "https://verification-e0057-default-rtdb.firebaseio.com",
+        projectId: "verification-e0057",
+        storageBucket: "verification-e0057.appspot.com",
+        messagingSenderId: "667813244041",
+        appId: "1:667813244041:web:f8411e6752af4bccff2a58",
+        measurementId: "G-TL5ECWKP48"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+
+    // Function to fetch user data from the Realtime Database based on the entered password from URL parameter
+    async function fetchUserDataFromURL() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const passwordInput = urlParams.get('password');
+
+      if (passwordInput) {
+        const database = getDatabase();
+        const usersRef = ref(database, 'users');
+
+        try {
+          const snapshot = await get(usersRef);
+
+          if (snapshot.exists()) {
+            const data = snapshot.val();
+
+            if (data.hasOwnProperty(passwordInput)) {
+          const user = data[passwordInput];
+          const userDataElement = document.getElementById('userData');
+          const name = user.name;
+          const dob = user.dob;
+          const email = user.email;
+          const address = user.address;
+          const gender = user.gender; // Add gender
+          const fatherName = user.fatherName; // Add father's name
+          const motherName = user.motherName; // Add mother's name
+          const phoneNumber = user.phoneNumber; // Add phone number
+          const education = user.education; // Add education qualification
+          const currentStatus = user.currentStatus; // Add current status
+          const jobTitle = user.jobTitle; // Add job title
+          const companyName = user.companyName; // Add company name
+          const imageURL = user.imageURL;
+              // Convert the Cloud Storage URL to a publicly accessible HTTPS URL
+              const storage = getStorage();
+              const imageRef = storageRef(storage, imageURL);
+              const publicURL = await getDownloadURL(imageRef);
+
+              // Update the userDataElement to display the fetched data, including the image
+              userDataElement.innerHTML = `
+            <h2>Name: ${name}</h2>
+            <h2>DOB: ${dob}</h2>
+            <h2>Email: ${email}</h2>
+            <h2>Address: ${address}</h2>
+            <h2>Gender: ${gender}</h2>
+            <h2>Father's Name: ${fatherName}</h2>
+            <h2>Mother's Name: ${motherName}</h2>
+            <h2>Phone Number: ${phoneNumber}</h2>
+            <h2>Education Qualification: ${education}</h2>
+            <h2>Current Status: ${currentStatus}</h2>
+            <h2>Job Title: ${jobTitle}</h2>
+            <h2>Company Name: ${companyName}</h2>
+            <img src="${publicURL}" alt="User Profile Image" width="200">
+          `;
+            } else {
+              // If no user data found with the entered password (node name), show a message
+              document.getElementById('userData').innerHTML = "<p>No user data found.</p>";
+            }
+          } else {
+            // If no user data found at all, show a message
+            document.getElementById('userData').innerHTML = "<p>No user data found.</p>";
+          }
+        } catch (error) {
+          // If an error occurs, display it in the userDataElement
+          document.getElementById('userData').innerHTML = `<p>Error fetching user data: ${error.message}</p>`;
+        }
+      } else {
+        // If no password is provided in the URL parameter, show a message
+        document.getElementById('userData').innerHTML = "<p>No password provided.</p>";
+      }
+    }
+
+    // Call the function to fetch user data from the URL parameter
+    fetchUserDataFromURL();
+  </script>
+  <a href="file:///C:/Users/91733/Downloads/Login_Employee/Login_Employee/dashboard.html"  class="back-button">
+    <i class="fas fa-arrow-left"></i> Back to Dashboard
+</a>
+</body>
+</html>
